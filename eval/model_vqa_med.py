@@ -179,7 +179,7 @@ def eval_model(args):
         mm_projector.load_state_dict({k.split('.')[-1]: v for k, v in mm_projector_weights.items()})
 
         model.model.mm_projector = mm_projector.cuda().half()
-        model.model.vision_tower = [vision_tower]
+        model.model.vision_tower = vision_tower
 
     # questions = json.load(open(os.path.expanduser(args.question_file), "r"))
     questions = []
