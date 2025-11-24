@@ -130,6 +130,7 @@ def eval_model(args):
             setattr(vision_tower, 'config', vision_config)
         else:
             model = LlavaLlamaForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16, use_cache=True).cuda()
+            print(model)
             image_processor = CLIPImageProcessor.from_pretrained(model.config.mm_vision_tower, torch_dtype=torch.float16)
             print(model.model.vision_tower)
             vision_tower = model.model.vision_tower
