@@ -130,9 +130,7 @@ def eval_model(args):
             setattr(vision_tower, 'config', vision_config)
         else:
             model = LlavaLlamaForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16, use_cache=True).cuda()
-            print(model)
             image_processor = CLIPImageProcessor.from_pretrained(model.config.mm_vision_tower, torch_dtype=torch.float16)
-            print(model.model.vision_tower.is_loaded)
             vision_tower = model.model.vision_tower
             vision_tower.to(device='cuda', dtype=torch.float16)
             
@@ -319,6 +317,7 @@ def eval_model(args):
 
         # outputs = outputs[len(prompt) + len(conv.roles[1]) + 2:index].strip()
 
+        print(outputs)
 
         ans_id = shortuuid.uuid()
         ans_file.write(json.dumps({"question_id": idx,
