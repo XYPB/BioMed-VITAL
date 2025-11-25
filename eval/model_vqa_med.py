@@ -257,7 +257,8 @@ def eval_model(args):
         # n_diff_input_output = (input_ids != output_ids[:, :input_token_len]).sum().item()
         # if n_diff_input_output > 0:
         #     print(f'[Warning] Sample {i}: {n_diff_input_output} output_ids are not the same as the input_ids')
-        outputs = tokenizer.batch_decode(output_ids[:, input_token_len:], skip_special_tokens=True)[0]
+        # outputs = tokenizer.batch_decode(output_ids[:, input_token_len:], skip_special_tokens=True)[0]
+        outputs = tokenizer.batch_decode(output_ids, skip_special_tokens=True)[0]
         print(f'Raw output before processing: {outputs}')
 
         if args.conv_mode == 'simple_legacy':
