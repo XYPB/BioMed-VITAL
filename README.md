@@ -43,6 +43,14 @@ You can download the original images from the following link:
 | ---------------------------------------------------------------------------- | --------- |
 | [PMC_image_urls.jsonl](https://github.com/mao1207/BioMed-VITAL/blob/main/data/PMC_image_urls.jsonl) | 129 MB     |
 
+
+## Inference
+
+```bash
+python eval/model_vqa_med.py --model-name /home/yd344/project/BioMed-VITAL/ckpts --image-folder /home/yd344/project/Med-VLM-R1/data/ --question-file /home/yd344/project/Med-VLM-R1/data/VQA_RAD/vqa_rad_test.jsonl --answers-file ./logs/vqa_rad_ans.jsonl
+```
+
+
 ## License
 
 The source code of this repository is released under the Apache License 2.0. The model license and dataset license are listed on their corresponding webpages.
