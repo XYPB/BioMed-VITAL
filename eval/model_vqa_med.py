@@ -131,6 +131,8 @@ def eval_model(args):
         else:
             model = LlavaLlamaForCausalLM.from_pretrained(model_name, torch_dtype=torch.float16, use_cache=True).cuda()
             image_processor = CLIPImageProcessor.from_pretrained(model.config.mm_vision_tower, torch_dtype=torch.float16)
+            if not model.model.vision_tower.is_loaded:
+                model.model.vision_tower.load_model(device_map='auto')
             vision_tower = model.model.vision_tower
             vision_tower.to(device='cuda', dtype=torch.float16)
             
