@@ -231,7 +231,7 @@ def eval_model(args):
         conv = conv_templates[args.conv_mode].copy()
         conv.append_message(conv.roles[0], qs)
         prompt = conv.get_prompt()
-        # print(prompt)
+        print(f'Prompt: {prompt}')
         inputs = tokenizer([prompt])
 
         input_ids = torch.as_tensor(inputs.input_ids).cuda()
@@ -253,10 +253,11 @@ def eval_model(args):
         input_token_len = input_ids.shape[1]
         print(input_ids.shape, output_ids.shape)
         print(output_ids[:, :input_token_len].shape)
-        n_diff_input_output = (input_ids != output_ids[:, :input_token_len]).sum().item()
-        if n_diff_input_output > 0:
-            print(f'[Warning] Sample {i}: {n_diff_input_output} output_ids are not the same as the input_ids')
+        # n_diff_input_output = (input_ids != output_ids[:, :input_token_len]).sum().item()
+        # if n_diff_input_output > 0:
+        #     print(f'[Warning] Sample {i}: {n_diff_input_output} output_ids are not the same as the input_ids')
         outputs = tokenizer.batch_decode(output_ids[:, input_token_len:], skip_special_tokens=True)[0]
+        print(f'Raw output before processing: {outputs}')
 
         if args.conv_mode == 'simple_legacy':
             while True:
