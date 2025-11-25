@@ -245,7 +245,7 @@ def eval_model(args):
                 images=images,
                 do_sample=True,
                 temperature=0.7,
-                max_new_tokens=1024,
+                max_new_tokens=2048,
                 stopping_criteria=[stopping_criteria])
 
         # TODO: new implementation
