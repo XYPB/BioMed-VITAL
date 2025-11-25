@@ -249,6 +249,7 @@ def eval_model(args):
                 stopping_criteria=[stopping_criteria])
 
         # TODO: new implementation
+        print(input_ids, output_ids)
         input_token_len = input_ids.shape[1]
         print(input_ids.shape, output_ids.shape)
         print(output_ids[:, :input_token_len].shape)
